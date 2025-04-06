@@ -1,10 +1,13 @@
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: url("assets/kmo 1.png") no-repeat center;
-  background-size: cover;
-  color: #333;
-  text-align: center;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url("assets/kmo\ 1.png"); /* Đường dẫn đến hình nền */
+  background-size: cover; /* Đảm bảo hình nền phủ toàn bộ màn hình */
+  background-position: center; /* Căn giữa hình nền */
+  background-repeat: no-repeat; /* Không lặp lại hình nền */
+  height: 100vh; /* Chiều cao toàn màn hình */
+  overflow-x: hidden; /* Ẩn cuộn ngang nếu có */
 }
 
 .container {
@@ -20,11 +23,19 @@ body {
   text-align: center;
 }
 
+.header-img {
+  max-width: 300px; /* Điều chỉnh kích thước hình tiêu đề */
+  height: auto;
+  z-index: 2; /* Đảm bảo hình tiêu đề nằm trên mây */
+  position: relative;
+}
+
 .cloud {
   position: absolute;
-  width: 300px; /* Điều chỉnh kích thước đám mây */
+  width: 350px; /* Điều chỉnh kích thước đám mây */
   height: auto;
-  opacity: 0.3; /* Độ mờ của đám mây */
+  opacity: 0.8; /* Độ mờ của đám mây */
+  z-index: 1;
 }
 
 .cloud-left {
@@ -34,41 +45,96 @@ body {
 
 .cloud-right {
   top: 10px;
-  right: -50px; /* Điều chỉnh vị trí bên phải */
+  right: -6px; /* Điều chỉnh vị trí bên phải */
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* Khoảng cách giữa hình và chữ */
+  margin-bottom: 20px;
+}
+
+.header-img {
+  max-width: 150px; /* Kích thước hình tiêu đề */
+  height: auto;
+}
+
+.header-text {
+  font-size: 20px;
+  color: #444;
+  font-weight: bold;
+  text-align: left;
 }
 
 .header-img {
   max-width: 100%;
   height: auto;
-  z-index: 1; /* Đảm bảo hình ảnh tiêu đề nằm trên đám mây */
+  z-index: 3; /* Đảm bảo hình ảnh tiêu đề nằm trên đám mây */
 }
 
 .bosco-description {
-  margin-top: 15px;
-  font-size: 16px;
+  margin: 15px 0 40px;
+  font-size: 25px;
   color: #555;
-  z-index: 2;
+  z-index: 0;
   position: relative;
+  text-align: center;
+}
+
+.bosco-subtitle {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #444;
+  font-weight: bold;
+  text-align: center;
 }
 
 .bosco-main {
   margin: 40px 0;
 }
 
-#login-btn,
-#spin-btn {
-  background-color: #ffccff;
+#login-btn {
+  display: block; /* Đảm bảo nút là khối */
+  margin: 20px auto; /* Căn giữa nút theo chiều ngang */
+  text-align: center;
+  background-color: #ffffff;
   border: none;
   padding: 12px 20px;
   font-size: 18px;
   border-radius: 12px;
   cursor: pointer;
   transition: 0.3s;
+  max-width: 300px; /* Giới hạn chiều rộng tối đa */
+  width: 90%; /* Đảm bảo nút chiếm 90% chiều rộng container trên màn hình nhỏ */
 }
 
-#login-btn:hover,
+#login-btn:hover {
+  background-color: #b35f89;
+  color: #ffffff;
+  transform: scale(1.05); /* Phóng to nhẹ khi hover */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#spin-btn {
+  background-color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%; /* Đảm bảo nút chiếm toàn bộ chiều rộng container trên màn hình nhỏ */
+  max-width: 300px; /* Giới hạn chiều rộng tối đa */
+  margin: 10px auto; /* Căn giữa nút */
+}
+
 #spin-btn:hover {
-  background-color: #ffc3e0;
+  background-color: #b35f89;
+  color: #ffffff;
+  transform: scale(1.05); /* Phóng to nhẹ khi hover */
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 #gacha-box {
@@ -76,9 +142,10 @@ body {
 }
 
 #result {
-  margin-top: 10px;
-  font-size: 18px;
+  margin-top: 20px;
+  font-size: 20px;
   font-weight: bold;
+  text-align: center;
 }
 
 .bosco-gallery {
@@ -136,6 +203,25 @@ body {
   height: auto;
 }
 
+.footer-link {
+  display: block; /* Đảm bảo là khối */
+  margin: 20px auto; /* Căn giữa theo chiều ngang */
+  font-size: 16px;
+  color: #000000;
+  text-decoration: none;
+  background-color: #ffffff; /* Màu nền */
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  max-width: 300px; /* Giới hạn chiều rộng tối đa */
+  text-align: center; /* Căn giữa nội dung */
+}
+
+.footer-link:hover {
+  background-color: #b4769b; /* Màu nền khi hover */
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.925); /* Hiệu ứng đổ bóng khi hover */
+}
+
 /* Định dạng mặc định cho desktop đã có */
 
 /* Responsive cho màn hình nhỏ hơn 768px (điện thoại) */
@@ -183,13 +269,30 @@ body {
     height: auto; /* Tự động điều chỉnh chiều cao */
   }
 
-  #login-btn,
+  #login-btn {
+    font-size: 16px; /* Giảm kích thước chữ */
+    padding: 10px 15px; /* Giảm padding */
+    width: 100%; /* Chiếm toàn bộ chiều rộng màn hình */
+  }
+
   #spin-btn {
     font-size: 16px; /* Giảm kích thước chữ */
     padding: 10px 15px; /* Giảm padding */
+    width: 90%; /* Chiếm 90% chiều rộng màn hình */
+    max-width: none; /* Loại bỏ giới hạn chiều rộng tối đa */
   }
 
   .bosco-footer {
     height: 150px; /* Giảm chiều cao footer */
+  }
+
+  body {
+    background-size: contain; /* Đảm bảo hình nền hiển thị đầy đủ trên màn hình nhỏ */
+  }
+
+  .footer-link {
+    font-size: 14px; /* Giảm kích thước chữ */
+    padding: 8px 15px; /* Giảm padding */
+    width: 90%; /* Chiếm 90% chiều rộng màn hình */
   }
 }
