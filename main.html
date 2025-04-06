@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>LazyTeam 10th - Gacha Game</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <header class="bosco-header">
+                <img src="assets/title 1.png" alt="LazyTeam 10th" class="header-img">
+                <img src="assets/may3 1.png" alt="Cloud 1" class="cloud cloud-left">
+                <img src="assets/may3 1.png" alt="Cloud 2" class="cloud cloud-right">
+                <p class="bosco-description">
+                    Nhân dịp LazyTeam tròn 10 tuổi, chúng mình tổ chức mini trò chơi đơn giản - gacha số lượng giới hạn
+                    mỗi ngày!
+                    Mỗi tài khoản sẽ có 5 lượt quay. Trúng quà hay không là do may mắn của bạn đó!
+                </p>
+            </header>
+
+            <main class="bosco-main">
+                <button id="login-btn">Đăng nhập Google để chơi</button>
+                <div id="gacha-box" style="display: none;">
+                    <p>Bạn còn <span id="spin-count">5</span> lượt quay hôm nay</p>
+                    <button id="spin-btn">Quay Gacha 🎰</button>
+                    <div id="result"></div>
+                </div>
+            </main>
+
+            <section class="bosco-gallery">
+                <h2>TIN TỨC</h2>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="assets/image (1).png" alt="Image 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/image (2).png" alt="Image 2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/image (3).png" alt="Image 3">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/image (4).png" alt="Image 4">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/image (5).png" alt="Image 5">
+                    </div>
+                </div>
+            </section>
+
+            <footer class="bosco-footer">
+            </footer>
+        </div>
+
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+        <script type="module" src="app.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,195 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: url("assets/kmo 1.png") no-repeat center;
+  background-size: cover;
+  color: #333;
+  text-align: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.bosco-header {
+  position: relative;
+  background-size: cover;
+  padding: 40px 20px 20px;
+  text-align: center;
+}
+
+.cloud {
+  position: absolute;
+  width: 300px; /* Điều chỉnh kích thước đám mây */
+  height: auto;
+  opacity: 0.3; /* Độ mờ của đám mây */
+}
+
+.cloud-left {
+  top: 10px;
+  left: -50px; /* Điều chỉnh vị trí bên trái */
+}
+
+.cloud-right {
+  top: 10px;
+  right: -50px; /* Điều chỉnh vị trí bên phải */
+}
+
+.header-img {
+  max-width: 100%;
+  height: auto;
+  z-index: 1; /* Đảm bảo hình ảnh tiêu đề nằm trên đám mây */
+}
+
+.bosco-description {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #555;
+  z-index: 2;
+  position: relative;
+}
+
+.bosco-main {
+  margin: 40px 0;
+}
+
+#login-btn,
+#spin-btn {
+  background-color: #ffccff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#login-btn:hover,
+#spin-btn:hover {
+  background-color: #ffc3e0;
+}
+
+#gacha-box {
+  margin-top: 20px;
+}
+
+#result {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.bosco-gallery {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.bosco-gallery h2 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #000; /* Màu chữ */
+  margin-bottom: 20px;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: nowrap; /* Không xuống dòng */
+  overflow-x: auto; /* Cuộn ngang nếu cần */
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8); /* Nền trắng mờ */
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item {
+  flex: 0 0 auto; /* Đảm bảo các item không co giãn */
+  width: 180px;
+  height: 260px;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1); /* Phóng to khi hover */
+}
+
+.bosco-footer {
+  margin-top: 40px;
+  background-size: cover;
+  height: 200px; /* Adjust the height as needed */
+}
+
+.footer-img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Định dạng mặc định cho desktop đã có */
+
+/* Responsive cho màn hình nhỏ hơn 768px (điện thoại) */
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .bosco-header {
+    padding: 20px 10px;
+  }
+
+  .cloud {
+    width: 150px; /* Giảm kích thước đám mây */
+    opacity: 0.5; /* Tăng độ trong suốt */
+  }
+
+  .cloud-left {
+    top: 5px;
+    left: -20px; /* Điều chỉnh vị trí đám mây bên trái */
+  }
+
+  .cloud-right {
+    top: 5px;
+    right: -20px; /* Điều chỉnh vị trí đám mây bên phải */
+  }
+
+  .header-img {
+    max-width: 80%; /* Giảm kích thước tiêu đề */
+  }
+
+  .bosco-description {
+    font-size: 14px; /* Giảm kích thước chữ */
+  }
+
+  .gallery {
+    flex-wrap: wrap; /* Cho phép xuống dòng */
+    gap: 10px; /* Giảm khoảng cách giữa các item */
+    padding: 10px;
+  }
+
+  .gallery-item {
+    width: 45%; /* Điều chỉnh kích thước item */
+    height: auto; /* Tự động điều chỉnh chiều cao */
+  }
+
+  #login-btn,
+  #spin-btn {
+    font-size: 16px; /* Giảm kích thước chữ */
+    padding: 10px 15px; /* Giảm padding */
+  }
+
+  .bosco-footer {
+    height: 150px; /* Giảm chiều cao footer */
+  }
+}
