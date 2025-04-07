@@ -188,8 +188,7 @@ spinButton.addEventListener("click", async () => {
 });
 
 // phat nhac
-document.addEventListener( "DOMContentLoaded", () =>
-{
+document.addEventListener("DOMContentLoaded", () => {
   const audio = document.getElementById("background-music");
 
   // Phát nhạc sau khi người dùng nhấp chuột
@@ -197,5 +196,34 @@ document.addEventListener( "DOMContentLoaded", () =>
     if (audio.paused) {
       audio.play();
     }
-  })
+  });
+
+  const loadingScreen = document.getElementById("loading-screen");
+  setTimeout(() => {
+    loadingScreen.style.display = "none";
+  }, 2000); // Ẩn sau 2 giây
+
+  const background = document.createElement("div");
+  background.id = "background-stars";
+  document.body.appendChild(background);
+
+  // Tạo sao băng
+  for (let i = 0; i < 5; i++) {
+    const star = document.createElement("div");
+    star.className = "shooting-star";
+    star.style.top = `${Math.random() * 100}vh`;
+    star.style.left = `${Math.random() * 100}vw`;
+    star.style.animationDelay = `${Math.random() * 5}s`;
+    background.appendChild(star);
+  }
+
+  // Tạo các ngôi sao nhỏ
+  for (let i = 0; i < 50; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.top = `${Math.random() * 100}vh`;
+    star.style.left = `${Math.random() * 100}vw`;
+    star.style.animationDelay = `${Math.random() * 5}s`;
+    background.appendChild(star);
+  }
 });
