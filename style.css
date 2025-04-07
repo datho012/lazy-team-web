@@ -44,8 +44,9 @@ body {
 }
 
 .cloud-right {
-  top: 4px;
-  right: -6px; /* Điều chỉnh vị trí bên phải */
+  top: 20px; /* Tăng khoảng cách từ trên xuống */
+  right: -30px; /* Đẩy đám mây xa hơn về bên phải */
+  opacity: 0.6; /* Giảm độ mờ để chữ dễ nhìn hơn */
 }
 
 .header-content {
@@ -421,4 +422,3 @@ p {
   border-radius: 50%;
   animation: star-fade 3s infinite;
 }
-
