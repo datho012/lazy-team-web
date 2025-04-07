@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-image: url("assets/kmo\ 1.png"); /* Đường dẫn đến hình nền */
+  background-image: url("assets/kmo1.png"); /* Đường dẫn đến hình nền */
   background-size: cover; /* Đảm bảo hình nền phủ toàn bộ màn hình */
   background-position: center; /* Căn giữa hình nền */
   background-repeat: no-repeat; /* Không lặp lại hình nền */
@@ -421,3 +421,4 @@ p {
   border-radius: 50%;
   animation: star-fade 3s infinite;
 }
+
