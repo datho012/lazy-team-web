@@ -76,7 +76,7 @@ body {
 
 .bosco-description {
   margin: 15px 0 40px;
-  font-size: 25px;
+  font-size: 18px;
   color: #555;
   z-index: 0;
   position: relative;
@@ -118,6 +118,9 @@ body {
 }
 
 #spin-btn {
+  display: block; /* Ensure the button is a block element */
+  margin: 20px auto; /* Center the button horizontally */
+  text-align: center;
   background-color: #ffffff;
   border: none;
   padding: 12px 20px;
@@ -125,15 +128,14 @@ body {
   border-radius: 12px;
   cursor: pointer;
   transition: 0.3s;
-  width: 100%; /* Đảm bảo nút chiếm toàn bộ chiều rộng container trên màn hình nhỏ */
-  max-width: 300px; /* Giới hạn chiều rộng tối đa */
-  margin: 10px auto; /* Căn giữa nút */
+  max-width: 300px; /* Limit the maximum width */
+  width: 90%; /* Make it responsive by occupying 90% of the container width */
 }
 
 #spin-btn:hover {
   background-color: #b35f89;
   color: #ffffff;
-  transform: scale(1.05); /* Phóng to nhẹ khi hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -206,7 +208,7 @@ body {
 .footer-link {
   display: block; /* Đảm bảo là khối */
   margin: 20px auto; /* Căn giữa theo chiều ngang */
-  font-size: 16px;
+  font-size: 18px;
   color: #000000;
   text-decoration: none;
   background-color: #ffffff; /* Màu nền */
@@ -220,6 +222,44 @@ body {
 .footer-link:hover {
   background-color: #b4769b; /* Màu nền khi hover */
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.925); /* Hiệu ứng đổ bóng khi hover */
+  color: #ffffff;
+}
+
+.footer-image-container {
+  text-align: center; /* Căn giữa hình ảnh */
+  margin-top: 20px; /* Khoảng cách phía trên */
+  animation: fadeIn 1.5s ease-in-out; /* Hiệu ứng fade-in */
+}
+
+.footer-image {
+  max-width: 80%; /* Đảm bảo hình ảnh không vượt quá chiều rộng */
+  height: auto; /* Giữ tỷ lệ hình ảnh */
+  border-radius: 15px; /* Bo góc hình ảnh */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng khi hover */
+}
+
+.footer-image:hover {
+  transform: scale(1.05); /* Phóng to nhẹ khi hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Tăng hiệu ứng đổ bóng khi hover */
+}
+
+/* Hiệu ứng fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Dịch chuyển từ dưới lên */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+p {
+  text-align: center; /* Align text to the center */
+  margin: 10px auto; /* Center the paragraph horizontally */
+  font-size: 16px; /* Adjust font size if needed */
 }
 
 /* Định dạng mặc định cho desktop đã có */
@@ -276,10 +316,10 @@ body {
   }
 
   #spin-btn {
-    font-size: 16px; /* Giảm kích thước chữ */
-    padding: 10px 15px; /* Giảm padding */
-    width: 90%; /* Chiếm 90% chiều rộng màn hình */
-    max-width: none; /* Loại bỏ giới hạn chiều rộng tối đa */
+    font-size: 16px; /* Reduce font size */
+    padding: 10px 15px; /* Adjust padding */
+    width: 100%; /* Occupy full width on smaller screens */
+    max-width: none; /* Remove the maximum width limit */
   }
 
   .bosco-footer {
@@ -295,4 +335,7 @@ body {
     padding: 8px 15px; /* Giảm padding */
     width: 90%; /* Chiếm 90% chiều rộng màn hình */
   }
+}
+#audio {
+  display: none;
 }
