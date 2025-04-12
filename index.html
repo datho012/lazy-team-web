@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <title>LazyTeam 10th - Gacha Game</title>
         <link rel="stylesheet" href="style.css">
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     </head>
 
     <body>
@@ -25,38 +26,43 @@
                 </div>
                 <button id="login-btn">Đăng nhập Google để chơi</button>
                 <div id="gacha-box" style="display: none;">
-                    <p>Ban còn 5 lượt quay hôm nay</p>
+                    <p>Ban còn <span id="spin-count">5</span> lượt quay hôm nay</p>
                     <button id="spin-btn">Quay Gacha 🎰</button>
                     <div id="result"></div>
                 </div>
             </main>
 
-            <section class="bosco-gallery">
-                <h2>TIN TỨC</h2>
-                <div class="gallery">
-                    <div class="gallery-item">
-                        <img src="assets/image(1).png" alt="Image 1">
+            <section class="slider-container">
+                <button class="slider-btn prev-btn">❮</button>
+                <div class="slider">
+                    <div class="slide">
+                        <img src="assets/image(1).png" alt="Product one">
                     </div>
-                    <div class="gallery-item">
-                        <img src="assets/image(2).png" alt="Image 2">
+                    <div class="slide">
+                        <img src="assets/image(2).png" alt="Product two">
                     </div>
-                    <div class="gallery-item">
-                        <img src="assets/image(3).png" alt="Image 3">
+                    <div class="slide">
+                        <img src="assets/image(3).png" alt="Product three">
                     </div>
-                    <div class="gallery-item">
-                        <img src="assets/image(4).png" alt="Image 4">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="assets/image(5).png" alt="Image 5">
+                    <div class="slide">
+                        <img src="assets/image(4).png" alt="Product four">
                     </div>
                 </div>
+                <button class="slider-btn next-btn">❯</button>
+                <div class="slider-indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                </div>
             </section>
+
             <footer class="bosco-footer">
                 <a href="https://www.facebook.com/houseofluoi" target="_blank" class="footer-link">
                     Theo dõi chúng tôi trên Facebook
                 </a>
             </footer>
-            <audio id="background-music" src="assets/anime bgm demo1.mp3" autoplay loop></audio>
+            <audio id="background-music" src="assets/anime bgm demo2.mp3" autoplay loop></audio>
         </div>
         <div id="loading-screen">
             <div class="spinner"></div>

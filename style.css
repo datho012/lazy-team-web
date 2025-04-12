@@ -373,7 +373,7 @@ p {
     font-size: 16px; /* Giảm kích thước chữ */
     padding: 10px 15px; /* Giảm padding */
     width: 90%; /* Chiếm 90% chiều rộng màn hình */
-    margin: 20 auto
+    margin: 20 auto;
   }
 
   .side-image {
@@ -486,4 +486,83 @@ p {
   50% {
     background-position: 100% 50%;
   }
+}
+
+/* Slider container */
+.slider-container {
+  position: relative;
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+  background: #2c2c2c; /* Màu nền tối */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Slider */
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Slide */
+.slide {
+  min-width: 100%;
+  overflow: hidden;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/* Navigation buttons */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+.slider-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Indicators */
+.slider-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.indicator.active {
+  background: white;
 }

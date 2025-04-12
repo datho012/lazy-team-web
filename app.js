@@ -167,17 +167,15 @@ spinButton.addEventListener("click", async () => {
         : "😢 Chúc bạn may mắn lần sau!";
     resultDiv.style.color = prize !== "Trượt" ? "green" : "red";
 
+    // Giảm số lượt quay
     await updateDoc(userRef, {
       spins: remainingSpins - 1,
     });
 
-    await setDoc(doc(db, "users", user.uid, "spins", `${Date.now()}`), {
-      prize: prize,
-      time: serverTimestamp(),
-    });
-
+    // Hiển thị số lượt quay còn lại
     spinCountSpan.textContent = remainingSpins - 1;
 
+    // Vô hiệu hóa nút nếu hết lượt quay
     if (remainingSpins - 1 === 0) {
       spinButton.disabled = true;
       spinButton.textContent = "Hết lượt quay";
@@ -226,4 +224,102 @@ document.addEventListener("DOMContentLoaded", () => {
     star.style.animationDelay = `${Math.random() * 5}s`;
     background.appendChild(star);
   }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const spinButton = document.getElementById("spin-btn");
+
+  // Hàm tạo pháo hoa
+  function launchFireworks() {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
+  }
+
+  // Kích hoạt pháo hoa khi nhấn nút quay gacha
+  spinButton.addEventListener("click", () => {
+    launchFireworks();
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Hàm tạo pháo hoa
+  function launchFireworks() {
+    const duration = 5 * 1000; // Thời gian pháo hoa (5 giây)
+    const end = Date.now() + duration;
+
+    (function frame() {
+      confetti({
+        particleCount: 5,
+        angle: Math.random() * 360,
+        spread: 55,
+        origin: {
+          x: Math.random(),
+          y: Math.random() - 0.2,
+        },
+      });
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    })();
+  }
+
+  // Kích hoạt pháo hoa khi người dùng truy cập
+  launchFireworks();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const headerImg = document.querySelector(".header-img");
+  const music = document.getElementById("background-music");
+
+  // Điều chỉnh tốc độ lắc lư theo nhịp nhạc
+  music.addEventListener("play", () => {
+    headerImg.style.animationDuration = "0.8s"; // Tăng tốc độ lắc lư
+  });
+
+  music.addEventListener("pause", () => {
+    headerImg.style.animationDuration = "1.5s"; // Giảm tốc độ lắc lư
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const slider = document.querySelector(".slider");
+  const slides = document.querySelectorAll(".slide");
+  const prevBtn = document.querySelector(".prev-btn");
+  const nextBtn = document.querySelector(".next-btn");
+  const indicators = document.querySelectorAll(".indicator");
+
+  let currentIndex = 0;
+
+  function updateSlider() {
+    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    indicators.forEach((indicator, index) => {
+      indicator.classList.toggle("active", index === currentIndex);
+    });
+  }
+
+  prevBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateSlider();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlider();
+  });
+
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener("click", () => {
+      currentIndex = index;
+      updateSlider();
+    });
+  });
+
+  // Auto-slide every 5 seconds
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlider();
+  }, 5000);
 });
