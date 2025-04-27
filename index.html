@@ -1,75 +1,152 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 
     <head>
-        <meta charset="UTF-8">
-        <title>LazyTeam 10th - Gacha Game</title>
-        <link rel="stylesheet" href="style.css">
-        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap"
+            rel="stylesheet">
+        <title>Lazy Team 10th Anniversary</title>
     </head>
 
     <body>
-        <div class="container">
-            <header class="bosco-header">
-                <img src="assets/1title.png" alt="LazyTeam 10th" class="header-img">
-                <img src="assets/may31.png" alt="Cloud 1" class="cloud cloud-left">
-                <img src="assets/may12.png" alt="Cloud 2" class="cloud cloud-right">
-                <p class="bosco-description">
-                    Nhân dịp LazyTeam tròn 10 tuổi, chúng mình tổ chức mini trò chơi đơn giản - gacha số lượng giới hạn
-                    mỗi ngày! Mỗi tài khoản sẽ có 5 lượt quay. Trúng quà hay không là do may mắn của bạn đó!
-                </p>
-            </header>
+        <!-- Stars background -->
+        <div class="stars"></div>
 
-            <main class="bosco-main">
-                <div class="footer-image-container">
-                    <img src="assets/final1.png" alt="Happy Anniversary" class="footer-image" />
+        <!-- Loading screen -->
+        <div id="loading-screen"
+            style="position:fixed; top:0; left:0; width:100%; height:100%; background:#9370db; z-index:9999; display:flex; justify-content:center; align-items:center;">
+            <div style="text-align:center; color:white; font-size:1.5rem;">
+                <div>Loading...</div>
+                <div
+                    style="width:50px; height:50px; border:5px solid rgba(255,255,255,0.3); border-top-color:white; border-radius:50%; animation:spin 1s linear infinite; margin:20px auto;">
                 </div>
-                <button id="login-btn">Đăng nhập Google để chơi</button>
-                <div id="gacha-box" style="display: none;">
-                    <p>Ban còn <span id="spin-count">5</span> lượt quay hôm nay</p>
-                    <button id="spin-btn">Quay Gacha 🎰</button>
-                    <div id="result"></div>
+            </div>
+        </div>
+        <style>
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+        <div class="container">
+            <main class="hero">
+                <!-- Logo/Header -->
+                <img src="assets/tieude.png" alt="Lazy Team 10th Anniversary" class="logo">
+
+                <!-- First circular content -->
+                <div class="content-text">
+                    <div class="intro-container">
+                        <img src="assets/thungo.png" alt="Thu ngỏ" class="intro">
+                    </div>
+                </div>
+
+                <!-- Team description -->
+                <div class="team-section">
+                    <img src="/assets/text.png" alt="team-section">
+                    </h2>
+                </div>
+
+                <!-- Status buttons grid -->
+                <div class="status-container">
+                    <div class="status-button">
+                        <img src="assets/oneshot.png" alt="Oneshot">
+                    </div>
+
+                    <div class="status-button">
+                        <img src="assets/on-going.png" alt="On-going">
+                    </div>
+
+                    <div class="status-button">
+                        <img src="assets/drop.png" alt="Drop">
+                    </div>
+
+                    <div class="status-button">
+                        <img src="assets/completed.png" alt="Completed">
+                    </div>
+
+                    <div class="status-button">
+                        <img src="assets/hiatus.png" alt="Hiatus">
+                    </div>
+                </div>
+
+                <!-- Team image -->
+                <img src="assets/final1.png" alt="Team Members" class="team-image">
+
+
+                <!-- Cải thiện phần giới thiệu Gacha -->
+                <div class="gacha-section">
+                    <img src="/assets/gacha.png" alt="gacha-image" class="gacha-image">
+                    <p class="gacha-detail">
+                        Như những ngôi sao nhỏ mang theo lời nhắn gửi, Vòng Quay May Mắn là món quà
+                        nho nhỏ mà Lười Team muốn dành tặng bạn –
+                        người đã đồng hành, yêu thương và tin tưởng chúng mình suốt hành trình vừa qua.
+                        <span class="highlight">Hãy quay thử một vòng nhé</span> – biết đâu
+                        bạn sẽ nhận được một mảnh quà bé xíu từ tinh tú, là standee, là postcard, là những món kỷ niệm
+                        nho nhỏ… hoặc chỉ đơn giản là một lời cảm ơn viết bằng cả tấm lòng.
+                        <span class="highlight">Hi vọng may mắn sẽ đến với bạn</span>, và cảm ơn các bạn
+                        một lần nữa vì tất cả 🌙✨
+                    </p>
+                    <div class="gacha-container">
+                        <p class="gacha-text">Luật chơi: Đăng nhập mỗi ngày để nhận 5 lượt quay, trò chơi sẽ đóng khi
+                            quà đã hết. Số lượt sẽ không tích lũy nên mọi
+                            người nhớ sử dụng hết mỗi ngày nhé!</p>
+                        <button id="login-btn" class="login-button">Đăng nhập với Google</button>
+                        <p class="gacha-instruction">Đăng nhập để nhận 5 lượt quay mỗi ngày</p>
+
+                        <!-- Gacha box (hidden until login) -->
+                        <div id="gacha-box" style="display: none;">
+                            <p class="gacha-text">Số lượt quay còn lại: <span id="spin-count">5</span></p>
+                            <button id="spin-btn" class="login-button">Quay Ngay</button>
+
+                            <div class="gacha-video-container" id="video-container">
+                                <video id="gacha-video" class="gacha-video" preload="auto">
+                                    <source src="assets/gacha-animation.mp4" type="video/mp4">
+                                    Trình duyệt của bạn không hỗ trợ video.
+                                </video>
+                            </div>
+
+                            <div id="result" style="display: none;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    <p>© Lazy Team 2023 - Chào mừng kỷ niệm 10 năm thành lập</p>
+                    <a href="https://www.facebook.com/houseofluoi" target="_blank" rel="noopener">
+                        <i class="social-icon">📱</i>facebook.com/houseofluoi
+                    </a>
+                </div>
+                <div class="player">
+                    <div id="info" class="info">
+                        <span class="artist">Anime BGM</span>
+                        <span class="name">Say it</span>
+                        <div class="progress-bar">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                    <div id="control-panel" class="control-panel">
+                        <div class="album-art"></div>
+                        <div class="controls">
+                            <div class="prev"></div>
+                            <div id="play" class="play"></div>
+                            <div class="next"></div>
+                        </div>
+                    </div>
                 </div>
             </main>
-
-            <section class="slider-container">
-                <button class="slider-btn prev-btn">❮</button>
-                <div class="slider">
-                    <div class="slide">
-                        <img src="assets/image(1).png" alt="Product one">
-                    </div>
-                    <div class="slide">
-                        <img src="assets/image(2).png" alt="Product two">
-                    </div>
-                    <div class="slide">
-                        <img src="assets/image(3).png" alt="Product three">
-                    </div>
-                    <div class="slide">
-                        <img src="assets/image(4).png" alt="Product four">
-                    </div>
-                </div>
-                <button class="slider-btn next-btn">❯</button>
-                <div class="slider-indicators">
-                    <span class="indicator active"></span>
-                    <span class="indicator"></span>
-                    <span class="indicator"></span>
-                    <span class="indicator"></span>
-                </div>
-            </section>
-
-            <footer class="bosco-footer">
-                <a href="https://www.facebook.com/houseofluoi" target="_blank" class="footer-link">
-                    Theo dõi chúng tôi trên Facebook
-                </a>
-            </footer>
-            <audio id="background-music" src="assets/anime bgm demo2.mp3" autoplay loop></audio>
-        </div>
-        <div id="loading-screen">
-            <div class="spinner"></div>
         </div>
 
-        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+        <audio id="new-audio-element" src="assets/anime bgm demo1.mp3" preload="auto"></audio>
+
         <script type="module" src="app.js"></script>
     </body>
 

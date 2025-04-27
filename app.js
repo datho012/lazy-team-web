@@ -147,44 +147,6 @@ loginButton.addEventListener("click", async () => {
   }
 });
 
-// Handle spin
-spinButton.addEventListener("click", async () => {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  if (!user) return alert("Bạn chưa đăng nhập!");
-
-  const userRef = doc(db, "users", user.uid);
-  const userSnap = await getDoc(userRef);
-  const data = userSnap.data();
-  const remainingSpins = data.spins;
-
-  if (remainingSpins > 0) {
-    const prize = await getPrizeFromInventory();
-
-    resultDiv.textContent =
-      prize !== "Trượt"
-        ? `🎉 Chúc mừng bạn đã trúng: ${prize}!`
-        : "😢 Chúc bạn may mắn lần sau!";
-    resultDiv.style.color = prize !== "Trượt" ? "green" : "red";
-
-    // Giảm số lượt quay
-    await updateDoc(userRef, {
-      spins: remainingSpins - 1,
-    });
-
-    // Hiển thị số lượt quay còn lại
-    spinCountSpan.textContent = remainingSpins - 1;
-
-    // Vô hiệu hóa nút nếu hết lượt quay
-    if (remainingSpins - 1 === 0) {
-      spinButton.disabled = true;
-      spinButton.textContent = "Hết lượt quay";
-    }
-  } else {
-    alert("Bạn đã hết lượt quay hôm nay!");
-  }
-});
-
 // phat nhac
 document.addEventListener("DOMContentLoaded", () => {
   const audio = document.getElementById("background-music");
@@ -205,121 +167,244 @@ document.addEventListener("DOMContentLoaded", () => {
   background.id = "background-stars";
   document.body.appendChild(background);
 
-  // Tạo sao băng
-  for (let i = 0; i < 5; i++) {
-    const star = document.createElement("div");
-    star.className = "shooting-star";
-    star.style.top = `${Math.random() * 100}vh`;
-    star.style.left = `${Math.random() * 100}vw`;
-    star.style.animationDelay = `${Math.random() * 5}s`;
-    background.appendChild(star);
-  }
-
-  // Tạo các ngôi sao nhỏ
-  for (let i = 0; i < 50; i++) {
-    const star = document.createElement("div");
-    star.className = "star";
-    star.style.top = `${Math.random() * 100}vh`;
-    star.style.left = `${Math.random() * 100}vw`;
-    star.style.animationDelay = `${Math.random() * 5}s`;
-    background.appendChild(star);
-  }
+  document.addEventListener("DOMContentLoaded", () => {
+    const spinButton = document.getElementById("spin-btn");
+  });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
+  // Tham chiếu đến các phần tử
   const spinButton = document.getElementById("spin-btn");
+  const videoContainer = document.getElementById("video-container");
+  const gachaVideo = document.getElementById("gacha-video");
+  const resultDiv = document.getElementById("result");
+  const spinCountSpan = document.getElementById("spin-count");
 
-  // Hàm tạo pháo hoa
-  function launchFireworks() {
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 },
-    });
-  }
+  if (!spinButton) return; // Nếu không có nút quay thì thoát
 
-  // Kích hoạt pháo hoa khi nhấn nút quay gacha
-  spinButton.addEventListener("click", () => {
-    launchFireworks();
-  });
-});
+  // Đảm bảo video đã tải trước
+  if (gachaVideo) {
+    gachaVideo.load();
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Hàm tạo pháo hoa
-  function launchFireworks() {
-    const duration = 5 * 1000; // Thời gian pháo hoa (5 giây)
-    const end = Date.now() + duration;
+    // Xử lý sự kiện khi video kết thúc
+    gachaVideo.addEventListener("ended", function () {
+      console.log("Video ended");
+      videoContainer.style.display = "none";
 
-    (function frame() {
-      confetti({
-        particleCount: 5,
-        angle: Math.random() * 360,
-        spread: 55,
-        origin: {
-          x: Math.random(),
-          y: Math.random() - 0.2,
-        },
-      });
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
+      // Hiển thị kết quả (giả lập)
+      if (resultDiv) {
+        resultDiv.textContent = "🎉 Chúc mừng bạn đã trúng giải!";
+        resultDiv.style.display = "block";
+      } else {
+        resultDiv.textContent = "lần sau nhé bạn ơi!";
+        resultDiv.style.display = "block";
       }
-    })();
-  }
 
-  // Kích hoạt pháo hoa khi người dùng truy cập
-  launchFireworks();
-});
+      // Giảm số lượt quay
+      if (spinCountSpan) {
+        const currentSpins = parseInt(spinCountSpan.textContent);
+        if (currentSpins > 0) {
+          spinCountSpan.textContent = currentSpins - 1;
+        }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const headerImg = document.querySelector(".header-img");
-  const music = document.getElementById("background-music");
-
-  // Điều chỉnh tốc độ lắc lư theo nhịp nhạc
-  music.addEventListener("play", () => {
-    headerImg.style.animationDuration = "0.8s"; // Tăng tốc độ lắc lư
-  });
-
-  music.addEventListener("pause", () => {
-    headerImg.style.animationDuration = "1.5s"; // Giảm tốc độ lắc lư
-  });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const slider = document.querySelector(".slider");
-  const slides = document.querySelectorAll(".slide");
-  const prevBtn = document.querySelector(".prev-btn");
-  const nextBtn = document.querySelector(".next-btn");
-  const indicators = document.querySelectorAll(".indicator");
-
-  let currentIndex = 0;
-
-  function updateSlider() {
-    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-    indicators.forEach((indicator, index) => {
-      indicator.classList.toggle("active", index === currentIndex);
+        // Vô hiệu hóa nút nếu hết lượt
+        if (currentSpins - 1 <= 0) {
+          spinButton.disabled = true;
+          spinButton.textContent = "Hết lượt quay";
+        } else {
+          spinButton.disabled = false;
+        }
+      }
     });
   }
 
-  prevBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-    updateSlider();
-  });
+  // Xử lý sự kiện khi nhấn nút quay
+  spinButton.addEventListener("click", function () {
+    console.log("Spin button clicked");
+    // Ẩn kết quả nếu đang hiển thị
+    if (resultDiv) resultDiv.style.display = "none";
 
-  nextBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    updateSlider();
-  });
+    // Hiển thị video
+    if (videoContainer) videoContainer.style.display = "block";
 
-  indicators.forEach((indicator, index) => {
-    indicator.addEventListener("click", () => {
-      currentIndex = index;
-      updateSlider();
-    });
-  });
+    // Phát video
+    if (gachaVideo) {
+      console.log("Playing video");
 
-  // Auto-slide every 5 seconds
-  setInterval(() => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    updateSlider();
-  }, 5000);
+      // Đặt lại video về đầu
+      gachaVideo.currentTime = 0;
+
+      // Promise để xử lý lỗi khi gọi play()
+      const playPromise = gachaVideo.play();
+
+      if (playPromise !== undefined) {
+        playPromise
+          .then((_) => {
+            console.log("Video playing successfully");
+          })
+          .catch((error) => {
+            console.error("Error playing video:", error);
+            // Fallback: hiển thị kết quả nếu video không chạy
+            if (videoContainer) videoContainer.style.display = "none";
+            if (resultDiv) {
+              resultDiv.textContent = "🎉 Chúc mừng bạn đã trúng giải!";
+              resultDiv.style.display = "block";
+            }
+          });
+      }
+    }
+  });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const spinButton = document.getElementById("spin-btn");
+  const videoContainer = document.getElementById("video-container");
+  const gachaVideo = document.getElementById("gacha-video");
+  const resultDiv = document.getElementById("result");
+  const spinCountSpan = document.getElementById("spin-count");
+
+  if (!spinButton) return;
+
+  // Đảm bảo xóa mọi event listener cũ
+  const newSpinBtn = spinButton.cloneNode(true);
+  spinButton.parentNode.replaceChild(newSpinBtn, spinButton);
+
+  if (gachaVideo) {
+    gachaVideo.load();
+  }
+
+  // Handler MỚI kết hợp cả hai chức năng
+  newSpinBtn.addEventListener("click", async function () {
+    const auth = getAuth();
+    const user = auth.currentUser;
+    if (!user) return alert("Bạn chưa đăng nhập!");
+
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+    const data = userSnap.data();
+    const remainingSpins = data.spins;
+
+    if (remainingSpins <= 0) {
+      return alert("Bạn đã hết lượt quay hôm nay!");
+    }
+
+    // Vô hiệu hóa nút trong quá trình quay
+    newSpinBtn.disabled = true;
+
+    // LẤY GIẢI THƯỞNG TRƯỚC, để chuẩn bị hiển thị sau khi video kết thúc
+    const prize = await getPrizeFromInventory();
+    console.log("Prize from inventory:", prize);
+
+    // Ẩn kết quả cũ nếu đang hiển thị
+    if (resultDiv) resultDiv.style.display = "none";
+
+    // Hiển thị video
+    if (videoContainer) videoContainer.style.display = "block";
+
+    // Phát video
+    if (gachaVideo) {
+      // Đặt lại video từ đầu
+      gachaVideo.currentTime = 0;
+
+      // Xử lý sự kiện khi video kết thúc
+      gachaVideo.onended = async function () {
+        videoContainer.style.display = "none";
+
+        // HIỂN THỊ KẾT QUẢ THỰC TẾ từ giải thưởng đã lấy
+        if (resultDiv) {
+          resultDiv.textContent =
+            prize !== "Trượt"
+              ? `🎉 Chúc mừng bạn đã trúng: ${prize}!`
+              : "😢 Chúc bạn may mắn lần sau!";
+          resultDiv.style.color = prize !== "Trượt" ? "green" : "red";
+          resultDiv.style.display = "block";
+        }
+
+        // Giảm số lượt quay trong DB
+        await updateDoc(userRef, {
+          spins: remainingSpins - 1,
+        });
+
+        // Cập nhật số lượt hiển thị
+        spinCountSpan.textContent = remainingSpins - 1;
+
+        // Kiểm tra và cập nhật trạng thái nút
+        if (remainingSpins - 1 <= 0) {
+          newSpinBtn.disabled = true;
+          newSpinBtn.textContent = "Hết lượt quay";
+        } else {
+          newSpinBtn.disabled = false;
+        }
+      };
+
+      try {
+        await gachaVideo.play();
+      } catch (error) {
+        console.error("Lỗi phát video:", error);
+        // Fallback nếu video không chạy
+        videoContainer.style.display = "none";
+
+        // Hiển thị kết quả thực tế ngay
+        if (resultDiv) {
+          resultDiv.textContent =
+            prize !== "Trượt"
+              ? `🎉 Chúc mừng bạn đã trúng: ${prize}!`
+              : "😢 Chúc bạn may mắn lần sau!";
+          resultDiv.style.color = prize !== "Trượt" ? "green" : "red";
+          resultDiv.style.display = "block";
+        }
+
+        // Vẫn giảm lượt quay trong DB
+        await updateDoc(userRef, {
+          spins: remainingSpins - 1,
+        });
+
+        spinCountSpan.textContent = remainingSpins - 1;
+
+        if (remainingSpins - 1 <= 0) {
+          newSpinBtn.disabled = true;
+          newSpinBtn.textContent = "Hết lượt quay";
+        } else {
+          newSpinBtn.disabled = false;
+        }
+      }
+    }
+  });
+});
+
+console.clear();
+
+class musicPlayer {
+  constructor() {
+    this.audio = document.getElementById("new-audio-element");
+    this.play = this.play.bind(this);
+    this.playBtn = document.getElementById("play");
+    this.playBtn.addEventListener("click", this.play);
+    this.controlPanel = document.getElementById("control-panel");
+    this.infoBar = document.getElementById("info");
+  }
+
+  play() {
+    let controlPanelObj = this.controlPanel,
+      infoBarObj = this.infoBar;
+    Array.from(controlPanelObj.classList).find(function (element) {
+      return element !== "active"
+        ? controlPanelObj.classList.add("active")
+        : controlPanelObj.classList.remove("active");
+    });
+
+    Array.from(infoBarObj.classList).find(function (element) {
+      return element !== "active"
+        ? infoBarObj.classList.add("active")
+        : infoBarObj.classList.remove("active");
+    });
+
+    if (this.audio.paused) {
+      this.audio.play();
+    } else {
+      this.audio.pause();
+    }
+  }
+}
+
+const newMusicplayer = new musicPlayer();
