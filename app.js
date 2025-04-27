@@ -161,6 +161,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const loadingScreen = document.getElementById("loading-screen");
   setTimeout(() => {
     loadingScreen.style.display = "none";
+    // Tự động phát nhạc nền sau khi loading xong
+    const audio = document.getElementById("new-audio-element");
+    if (audio) {
+      audio.play().catch(() => {});
+    }
   }, 2000); // Ẩn sau 2 giây
 
   const background = document.createElement("div");
@@ -401,10 +406,15 @@ class musicPlayer {
 
     if (this.audio.paused) {
       this.audio.play();
+      this.playBtn.classList.add("playing");
     } else {
       this.audio.pause();
+      this.playBtn.classList.remove("playing");
     }
   }
 }
 
-const newMusicplayer = new musicPlayer();
+// Đảm bảo player chỉ khởi tạo sau khi DOM đã sẵn sàng
+document.addEventListener("DOMContentLoaded", function () {
+  new musicPlayer();
+});

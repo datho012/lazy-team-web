@@ -20,7 +20,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 2rem 3rem; /* Adjust padding if needed */
-  background: url("assets/bg.png") no-repeat center;
+  background: url("assets/bg-final.png") no-repeat center;
   background-size: 100% 100%;
   background-size: cover;
   width: 100%; /* Ensure full width */
@@ -36,11 +36,11 @@ body {
 
 .intro {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 5500px;
   margin-bottom: 6rem;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 10rem;
+  margin-top: 23rem;
 }
 
 .status-container {
@@ -89,131 +89,104 @@ body {
   width: 80%;
   height: auto;
   border-radius: 20px;
-  margin: 50rem 0;
+  margin: 2rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 /* chinh chu duoi hinh gacha */
 
-.gacha-image {
-  width: 100%;
-  height: auto;
-  border-radius: 20px;
-  margin: 2rem 0;
-}
 .gacha-section {
   text-align: center;
   margin: 4rem auto;
   max-width: 800px;
   padding: 2rem;
+  color: #ffffff; /* text trắng như ảnh */
+}
+
+.gacha-image {
+  width: 100%;
+  height: auto;
+  margin: 0 auto 2rem;
+  display: block;
+}
+
+.gacha-detail {
+  font-size: 2rem;
+  line-height: 1.4;
+  color: #fff;
+  margin-bottom: 7rem;
 }
 
 .gacha-container {
+  background: rgba(255, 255, 255, 0.1); /* nền tím trong suốt */
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
   padding: 2rem;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.gacha-video-container {
-  position: relative;
-  width: 100%;
-  max-width: 900px; /* tăng max-width */
+  max-width: 600px;
   margin: 2rem auto;
-  display: none;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  z-index: 100;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.gacha-video {
-  width: 100%;
-  height: 500px; /* tăng chiều cao video */
-  object-fit: cover; /* đảm bảo video không bị méo */
-  display: block;
-  border-radius: 12px;
-}
-
-.gacha-container h2 {
-  font-size: 1.5rem;
-  color: #6a1b9a;
-  margin-bottom: 1.5rem;
-}
-
-.gacha-container p {
-  font-size: 1.2rem;
-  color: #000000;
-  margin-bottom: 1.5rem;
-  font-weight: bold;
-}
-
-.gacha-container .remaining-spins {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #6a1b9a;
-  margin-bottom: 1rem;
-}
-
-.gacha-container .note {
-  font-size: 0.9rem;
-  color: #9c27b0;
-  font-style: italic;
+.gacha-text {
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 2rem;
 }
 
 .login-button {
-  background: #e91e63;
+  background: #ba68c8;
   color: white;
   border: none;
   border-radius: 12px;
   padding: 1rem 2rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
   transition: 0.3s ease;
-  margin: 1.5rem 0;
-}
-
-.gacha-detail {
-  text-align: center;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  font-size: 1.8rem;
-  color: #000000;
-  max-width: 800px;
-  line-height: 1.6;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  border-radius: 10px;
-  box-sizing: border-box;
 }
 
 .login-button:hover {
-  background: #d81b60;
+  background: #ab47bc;
   transform: translateY(-2px);
 }
 
-.gacha-text {
-  color: #000000;
-  font-size: 3rem;
-  margin: 1rem 0;
-  font-weight: bold;
+.gacha-instruction {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.gacha-video-container {
+  margin-top: 2rem;
+  display: none;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.gacha-video {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
 }
 
 #result {
   padding: 1.5rem;
-  border-radius: 10px;
-  margin: 1.5rem 0;
+  margin-top: 1.5rem;
   font-weight: bold;
   font-size: 1.2rem;
-  transition: all 0.5s ease;
+  border-radius: 12px;
+  color: #000;
+  background: #fff;
 }
 
 .footer {
   color: #000000;
   font-size: 2rem;
-  padding: 1.5rem 0;
+  padding: 2.5rem 0;
   text-align: center;
-  margin-top: 3rem;
+  margin-top: 50rem;
+  margin-bottom: 2rem;
 }
 
 .footer a {
