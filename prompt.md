@@ -1,3 +1,11 @@
-fix the audio play auto when website loading done, using the audio player progess to stop or play the music.
-fix the sprint gacha video , i need when i push button "quay ngay" video sprint can be load to and after finish , pop-up the result 
-the file in folder assets is gacha-animation.mp4 embeded it 
+adjust logo on desktop screen liitle bigger like add more 20px on scale 
+status-container like one-shot , on-going 
+in mobile like a images i want it closer using padding , in this picture the location of the element is far 
+
+embeded link using href in status-container
+
+On-going: https://lazyteam-soluoi.blogspot.com/search/label/đang%20tiến%20hành
+Oneshot: https://lazyteam-soluoi.blogspot.com/search/label/Oneshot
+Completed: https://lazyteam-soluoi.blogspot.com/search/label/đã%20hoàn%20thành
+Drop: https://lazyteam-soluoi.blogspot.com/search/label/tạm%20ngưng%2F%20drop
+Hiatus: https://lazyteam-soluoi.blogspot.com/search/label/ngang%20raw

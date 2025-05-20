@@ -84,6 +84,8 @@ body {
   height: 70vh;
   margin-bottom: 3rem auto;
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  /* Made logo slightly bigger on desktop as requested */
+  transform: scale(1.05);
 }
 
 .intro {
@@ -797,19 +799,21 @@ body {
 
   .status-container {
     flex-direction: column;
-    gap: 0.8rem;
-    margin: 1rem 0;
+    gap: 0.5rem; /* Reduced gap between status items */
+    margin: 0.75rem 0;
+    padding: 0 0.5rem; /* Added horizontal padding */
   }
 
   .status-button {
     min-width: 90px;
-    min-height: 100px;
-    padding: 10px;
+    min-height: 90px; /* Reduced minimum height */
+    padding: 6px 8px; /* Reduced padding to make buttons closer */
   }
 
   .status-button img {
-    width: 100px;
+    width: 90px;
     height: 60px;
+    margin-bottom: 0.2rem; /* Reduced margin */
   }
 
   .team-image {
