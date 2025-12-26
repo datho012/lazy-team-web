@@ -430,6 +430,38 @@ function setupSpinButton() {
             spins: remainingSpins - 1,
           });
 
+          // Save winner record if prize is not "Trượt"
+          if (prize !== "Trượt") {
+            try {
+              const today = new Date().toISOString().split("T")[0];
+              const winnerRecord = {
+                playerName: user.displayName,
+                playerEmail: user.email,
+                playerUID: user.uid,
+                prize: prize,
+                date: today,
+                timestamp: serverTimestamp(),
+                time: new Date().toLocaleTimeString("vi-VN"),
+              };
+
+              console.log("Saving winner record...", winnerRecord);
+
+              // Add to winners collection
+              const winnerRef = doc(
+                db,
+                "winners",
+                `${today}_${user.uid}_${Date.now()}`
+              );
+              await setDoc(winnerRef, winnerRecord);
+              console.log("✅ Winner record saved successfully:", winnerRecord);
+            } catch (winnerError) {
+              console.error("❌ Error saving winner record:", winnerError.code, winnerError.message);
+              console.error("Full error:", winnerError);
+            }
+          } else {
+            console.log("No prize won (Trượt) - not saving winner record");
+          }
+
           // Update UI spin count
           if (spinCountSpan) {
             spinCountSpan.textContent = remainingSpins - 1;
